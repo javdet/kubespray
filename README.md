@@ -1,3 +1,20 @@
+# Развертывание kubernetes кластера #
+
+1. Запустить установку keepalived на узлы kube-master
+```
+ansible-playbook -i inventory/hosts keepalived.yml -b -v
+```
+2. Запустить установку haproxy на узлы kube-master
+```
+ansible-playbook -i inventory/hosts haproxy.yml -b -v
+```
+3. Запустить установку kubernetes кластера
+```
+ansible-playbook -i inventory/hosts cluster.yml -b -v
+```
+
+Все необходимые требования описаны ниже
+
 ![Kubernetes Logo](https://s28.postimg.org/lf3q4ocpp/k8s.png)
 
 ## Deploy a production ready kubernetes cluster

@@ -1,0 +1,23 @@
+node0-unix.sd.corp.itmh.ru ip=172.17.25.2
+node1-unix.sd.corp.itmh.ru ip=172.17.25.3
+node2-unix.sd.corp.itmh.ru ip=172.17.25.4
+
+
+[kube-master]
+node0-unix.sd.corp.itmh.ru
+node1-unix.sd.corp.itmh.ru
+node2-unix.sd.corp.itmh.ru
+
+[etcd]
+node0-unix.sd.corp.itmh.ru
+node1-unix.sd.corp.itmh.ru
+node2-unix.sd.corp.itmh.ru
+
+[kube-node]
+node0-unix.sd.corp.itmh.ru
+node1-unix.sd.corp.itmh.ru
+node2-unix.sd.corp.itmh.ru
+
+[k8s-cluster:children]
+kube-node
+kube-master
