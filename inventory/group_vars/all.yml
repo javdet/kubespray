@@ -1,5 +1,5 @@
 # Valid bootstrap options (required): ubuntu, coreos, centos, none
-bootstrap_os: none
+bootstrap_os: debian
 
 #Directory where etcd data stored
 etcd_data_dir: /var/lib/etcd
@@ -21,10 +21,10 @@ bin_dir: /usr/local/bin
 #etcd_multiaccess: true
 
 ## External LB example config
-## apiserver_loadbalancer_domain_name: "elb.some.domain"
-#loadbalancer_apiserver:
-#  address: 1.2.3.4
-#  port: 1234
+apiserver_loadbalancer_domain_name: "node-unix.sd.corp.itmh.ru"
+loadbalancer_apiserver:
+  address: 172.17.25.5
+  port: 443
 
 ## Internal loadbalancers for apiservers
 #loadbalancer_apiserver_localhost: true
@@ -38,7 +38,7 @@ bin_dir: /usr/local/bin
 ## for mounting persistent volumes into containers.  These may not be loaded by preinstall kubernetes
 ## processes.  For example, ceph and rbd backed volumes.  Set to true to allow kubelet to load kernel
 ## modules.
-# kubelet_load_modules: false
+kubelet_load_modules: true
 
 ## Internal network total size. This is the prefix of the
 ## entire network. Must be unused in your environment.
@@ -50,9 +50,9 @@ bin_dir: /usr/local/bin
 #peer_with_router: false
 
 ## Upstream dns servers used by dnsmasq
-#upstream_dns_servers:
-#  - 8.8.8.8
-#  - 8.8.4.4
+upstream_dns_servers:
+  - 172.16.59.6
+  - 172.16.59.2
 
 ## There are some changes specific to the cloud providers
 ## for instance we need to encapsulate packets with some network plugins
@@ -92,17 +92,17 @@ bin_dir: /usr/local/bin
 #kubeadm_token: "{{ kubeadm_token_first }}.{{ kubeadm_token_second }}"
 #
 ## Set these proxy values in order to update package manager and docker daemon to use proxies
-#http_proxy: ""
-#https_proxy: ""
+http_proxy: "http://stargate.corp.itmh.ru:5190"
+https_proxy: "http://stargate.corp.itmh.ru:5190"
 ## Refer to roles/kubespray-defaults/defaults/main.yml before modifying no_proxy
 #no_proxy: ""
 
 ## Uncomment this if you want to force overlay/overlay2 as docker storage driver
 ## Please note that overlay2 is only supported on newer kernels
-#docker_storage_options: -s overlay2
+docker_storage_options: -s overlay2
 
 # Uncomment this if you have more than 3 nameservers, then we'll only use the first 3.
-#docker_dns_servers_strict: false
+docker_dns_servers_strict: false
 
 ## Default packages to install within the cluster, f.e:
 #kpm_packages:
