@@ -70,8 +70,11 @@ frontend k8s-api-{{ key }}
   tcp-request inspect-delay 5s
   #tcp-request content reject if !HTTP
   tcp-request content accept if { req.ssl_hello_type 1 }
-  #use_backend traefik if { req.ssl_sni -m found } { req.ssl_sni -i nodejs-app.virtual.local }
-  #use_backend traefik-lb if { req.ssl_sni -m found } !{ req.ssl_sni -i k8s-api.virtual.local }
+  acl api req_ssl_sni -i node-unix.sd.corp.itmh.ru
+  acl dashboard req_ssl_sni -i dashboard.node-unix.sd.corp.itmh.ru
+
+  use_backend k8s-api if api
+  use_backend traefik-lb if dashboard
   default_backend k8s-api
 {% endfor %}
 

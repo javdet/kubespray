@@ -23,14 +23,13 @@
 
 - name: Enabling/Disabling net.ipv4.ip_nonlocal_bind option
   sysctl:
-    nameL: net.ipv4.ip_nonlocal_bind
+    name: net.ipv4.ip_nonlocal_bind
     value: 1
     sysctl_file: /etc/sysctl.d/10-ip_nonlocal_bind.conf
     sysctl_set: yes
     reload: yes
     state: present
   notify: restart haproxy
-  when: haproxy_bind_nonlocal_ip is defined and haproxy_bind_nonlocal_ip | bool
 
 - name: services > Services
   service:

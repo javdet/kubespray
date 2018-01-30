@@ -92,8 +92,8 @@ upstream_dns_servers:
 #kubeadm_token: "{{ kubeadm_token_first }}.{{ kubeadm_token_second }}"
 #
 ## Set these proxy values in order to update package manager and docker daemon to use proxies
-http_proxy: "http://stargate.corp.itmh.ru:5190"
-https_proxy: "http://stargate.corp.itmh.ru:5190"
+http_proxy: "http://172.16.1.15:5190"
+https_proxy: "http://172.16.1.15:5190"
 ## Refer to roles/kubespray-defaults/defaults/main.yml before modifying no_proxy
 #no_proxy: ""
 
