@@ -1,5 +1,10 @@
+cassandra_requests_memory: "768Mi"
+cassandra_requests_cpu: "280m"
+cassandra_heap_size: "512M"
+expose_port: 8080
+
 # Valid bootstrap options (required): ubuntu, coreos, centos, none
-bootstrap_os: debian
+bootstrap_os: ubuntu
 
 #Directory where etcd data stored
 etcd_data_dir: /var/lib/etcd
@@ -7,6 +12,7 @@ etcd_data_dir: /var/lib/etcd
 # Directory where the binaries will be installed
 bin_dir: /usr/local/bin
 
+download_run_once: False
 ## The access_ip variable is used to define how other nodes should access
 ## the node.  This is used in flannel to allow other flannel nodes to see
 ## this node for example.  The access_ip is really useful AWS and Google
@@ -21,10 +27,10 @@ bin_dir: /usr/local/bin
 #etcd_multiaccess: true
 
 ## External LB example config
-apiserver_loadbalancer_domain_name: "node-unix.sd.corp.itmh.ru"
-loadbalancer_apiserver:
-  address: 172.17.25.5
-  port: 443
+#apiserver_loadbalancer_domain_name: "node-unix.sd.corp.itmh.ru"
+#loadbalancer_apiserver:
+#  address: 172.17.25.5
+#  port: 443
 
 ## Internal loadbalancers for apiservers
 #loadbalancer_apiserver_localhost: true
@@ -51,8 +57,7 @@ kubelet_load_modules: true
 
 ## Upstream dns servers used by dnsmasq
 upstream_dns_servers:
-  - 172.16.59.6
-  - 172.16.59.2
+  - 8.8.8.8
 
 ## There are some changes specific to the cloud providers
 ## for instance we need to encapsulate packets with some network plugins
@@ -92,8 +97,8 @@ upstream_dns_servers:
 #kubeadm_token: "{{ kubeadm_token_first }}.{{ kubeadm_token_second }}"
 #
 ## Set these proxy values in order to update package manager and docker daemon to use proxies
-http_proxy: "http://172.16.1.15:5190"
-https_proxy: "http://172.16.1.15:5190"
+# http_proxy: "http://172.16.1.15:5190"
+#https_proxy: "http://172.16.1.15:5190"
 ## Refer to roles/kubespray-defaults/defaults/main.yml before modifying no_proxy
 #no_proxy: ""
 
