@@ -1,14 +1,6 @@
 # Развертывание kubernetes кластера #
 
-1. Запустить установку keepalived на узлы kube-master
-```
-ansible-playbook -i inventory/hosts keepalived.yml -b -v
-```
-2. Запустить установку haproxy на узлы kube-master
-```
-ansible-playbook -i inventory/hosts haproxy.yml -b -v
-```
-3. Запустить установку kubernetes кластера
+Запустить установку kubernetes кластера
 ```
 ansible-playbook -i inventory/hosts cluster.yml -b -v
 ```
